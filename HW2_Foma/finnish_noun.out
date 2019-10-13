@@ -1,0 +1,242 @@
+talo+Sg+Nom	talo
+
+talo+Pl+Nom	talot
+
+talo+Sg+Gen	talon
+
+talo+Pl+Gen	talojen
+
+talo+Sg+Part	taloa
+
+talo+Pl+Part	taloja
+
+talo+Sg+In	talossa
+
+talo+Pl+In	taloissa
+
+	+?
+
+talo+Sg+El	talosta
+
+talo+Pl+El	taloista
+
+kivi+Sg+El	kivistä
+
+kivi+Pl+El	kivistä
+
+	+?
+
+auto+Sg+Ad	audolla
+
+auto+Pl+Ad	autoilla
+
+kone+Sg+Ad	konella
+
+kone+Pl+Ad	koneilla
+
+	+?
+
+maa+Sg+Abl	maalta
+
+maa+Pl+Abl	mailta
+
+meri+Sg+Abl	meriltä
+
+meri+Pl+Abl	meriltä
+
+	+?
+
+katto+Sg+All	katdolle
+
+katto+Pl+All	kattoille
+
+	+?
+
+talo+Sg+Ill	taloon
+
+talo+Pl+Ill	taloihin
+
+koulu+Sg+Ill	kouluun
+
+koulu+Pl+Ill	kouluihin
+
+maa+Sg+Ill	maahan
+
+maa+Pl+Ill	maihin
+
+työ+Sg+Ill	työhön
+
+työ+Pl+Ill	töihin
+
+harmaa+Sg+Ill	harmaaseen
+
+harmaa+Pl+Ill	harmaisiin
+
+	+?
+
+elämä+Sg+Nom	elämä
+
+elämä+Pl+Nom	elämät
+
+elämä+Sg+Gen	elämän
+
+elämä+Pl+Gen	elämien
+
+elämä+Sg+Part	elämää
+
+elämä+Pl+Part	elämiä
+
+elämä+Sg+In	elämässä
+
+elämä+Pl+In	elämissä
+
+	+?
+
+kuu+Sg+Nom	kuu
+
+kuu+Pl+Nom	kuut
+
+kuu+Sg+Gen	kuun
+
+kuu+Pl+Gen	kuiden
+
+kuu+Sg+Part	kuuta
+
+kuu+Pl+Part	kuita
+
+kuu+Sg+In	kuussa
+
+kuu+Pl+In	kuissa
+
+	+?
+
+työ+Sg+Nom	työ
+
+työ+Pl+Nom	työt
+
+työ+Sg+Gen	työn
+
+työ+Pl+Gen	töiden
+
+työ+Sg+Part	työtä
+
+työ+Pl+Part	töitä
+
+työ+Sg+In	työssä
+
+työ+Pl+In	töissä
+
+	+?
+
+sukka+Sg+Nom	sukka
+
+sukka+Pl+Nom	sukat
+
+sukka+Sg+Gen	sukan
+
+sukka+Pl+Gen	sukkien
+
+sukka+Sg+Part	sukkaa
+
+sukka+Pl+Part	sukkia
+
+sukka+Sg+In	sukassa
+
+sukka+Pl+In	sukissa
+
+	+?
+
+poika+Sg+Nom	poika
+
+poika+Pl+Nom	pojat
+
+poika+Sg+Gen	pojan
+
+poika+Pl+Gen	poikien
+
+poika+Sg+Part	poikaa
+
+poika+Pl+Part	poikia
+
+poika+Sg+In	pojassa
+
+poika+Pl+In	pojissa
+
+	+?
+
+kaappi+Pl+In	kaapissa
+
+matto+Pl+All	mattoille
+
+kukka+Sg+Gen	kukan
+
+	+?
+
+tupa+Sg+In	tuvassa
+
+katu+Sg+All	kadulle
+
+vihta+Sg+All	vihdalle
+
+poika+Sg+All	pojalle
+
+jalka+Sg+Gen	jalan
+
+	+?
+
+matka+Pl+In	matkoissa
+
+kirja+Pl+Part	kirjoja
+
+piha+Pl+All	pihoille
+
+herra+Pl+Gen	herrojen
+
+	+?
+
+koira+Pl+Gen	koirien
+
+poika+Pl+All	pojille
+
+muna+Pl+Part	munia
+
+kuuma+Pl+In	kuumissa
+
+	+?
+
+kampa+Sg+All	kammalle
+
+kenkä+Pl+Nom	kengät
+
+ilta+Sg+All	illalle
+
+kerta+Sg+Gen	kerran
+
+suku+Sg+In	suvussa
+
+	+?
+
+puu+Pl+Part	puita
+
+tie+Pl+All	teille
+
+	+?
+
+avain+Sg+Nom	avain
+
+avain+Sg+Part	avainta
+
+avain+Sg+Gen	avaimen
+
+avain+Pl+In	avaimissa
+
+	+?
+
+työtön+Sg+Nom	työtön
+
+työtön+Sg+Part	työtöntä
+
+työtön+Sg+Gen	työttömen
+
+työtön+Pl+In	työttömissä
+

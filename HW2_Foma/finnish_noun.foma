@@ -1,0 +1,123 @@
+# Определение согласных, гласных (как сочетание передних, нейтральных и задних гласных), определение буквы
+define Consonant b | c | d | f | g | h | j | k | l | m | n | p | q | r | s | t | v | w | x | z ;
+define FrontVowel ä | ö | y ;
+define NeutralVowel e | i ;
+define BackVowel a | o | u ;
+define Vowel FrontVowel | NeutralVowel | BackVowel | A | E;
+define Letter Vowel | Consonant;
+
+# Определение падежа и числа
+define Case "+Nom" | "+Gen" | "+Part" | "+In" | "+All" | "+Abl" | "+Ad" | "+Ill" | "+El";
+define Number "+Sg" | "+Pl" ; 
+
+# Определение основ переднего и заднего ряда, определение основы как последовательности букв
+define FrontStem [Consonant* [ FrontVowel | NeutralVowel ] ]+ Consonant*;
+define BackStem [Consonant* [ BackVowel | NeutralVowel ] ]* [Consonant* BackVowel] [Consonant* [ BackVowel | NeutralVowel ] ]* Consonant*;
+
+define Stem Letter+;
+
+define Input Stem Number Case;
+
+# В номинативе множественное число выражается с помощью t, единственное - нулевым аффиксом
+# крышечка в качестве границы морфем
+define NomPl "+Pl" "+Nom" -> "^" t || _ ;
+define NomSg "+Sg" "+Nom" -> "^" || _ ;
+
+define Nominatives NomPl .o. NomSg ;
+
+# В генетиве после двух гласных (дифтонги и долгие гласные) аффикс den
+# В любой другой позиции - En (в единственном числе n, но позднее E само будет опущено в необходимых позициях)
+define GenDen "+Gen" -> d e n || Vowel Vowel "+Pl" _ ;
+define Gen "+Gen" -> E n || _ ;
+
+define Genetive GenDen .o. Gen ;
+
+# В партитиве tA после дифтонгов/долгих гласных и согласных, просто А со всеми остальными основами
+define PartTa "+Part" -> t A || [ Consonant Vowel Vowel | Consonant ] Number _ ;
+define PartA "+Part" -> A || _ ;
+# Инессив - ssA, аллатив - lle, аблатив - ltA, адессив - llA, элатив - stA
+# (тут были перепутаны аллатив и адессив)
+define LocativeCases "+In" -> s s A , "+All" -> l l e || _ , "+Abl" -> l t A || _ , "+Ad" -> l l A || _ , "+El" -> s t A || _ ;
+
+# Мн. число иллатива обычное
+define IllPl1 "+Ill" -> h i n || Vowel "+Pl" _ ;
+define IllPl2 "+Ill" -> i n || Consonant "+Pl" _ ;
+
+# Аффиксы siin, seen в иллативе после долгих гласных
+define Illseen "+Sg" "+Ill" -> s e e n || Vowel+ Consonant+ [ a a | o o | u u | e e | i i | y y | ä ä | ö ö ] _ ;
+define Illsiin "+Ill" -> s i i n || Vowel+ Consonant+ [ a a | o o | u u | e e | i i | y y | ä ä | ö ö ] "+Pl" _ ;
+
+# Аффиксы с h в иллативе в односложных словах
+define IllH1 a "+Sg" "+Ill" -> a h a n || .#. Consonant Vowel* _ ;
+define IllH2 o "+Sg" "+Ill" -> o h o n || .#. Consonant Vowel* _ ;
+define IllH3 u "+Sg" "+Ill" -> u h u n || .#. Consonant Vowel* _ ;
+define IllH4 i "+Sg" "+Ill" -> i h i n || .#. Consonant Vowel* _ ;
+define IllH5 e "+Sg" "+Ill" -> e h e n || .#. Consonant Vowel* _ ;
+define IllH6 ö "+Sg" "+Ill" -> ö h ö n || .#. Consonant Vowel* _ ;
+define IllH7 ä "+Sg" "+Ill" -> ä h ä n || .#. Consonant Vowel* _ ;
+define IllH8 y "+Sg" "+Ill" -> y h y n || .#. Consonant Vowel* _ ;
+
+# Обычное ед. число в иллативе (удвоение гласной)
+define IllSg1 a "+Sg" "+Ill" -> a a n || _ ;
+define IllSg2 o "+Sg" "+Ill" -> o o n || _ ;
+define IllSg3 u "+Sg" "+Ill" -> u u n || _ ;
+define IllSg4 i "+Sg" "+Ill" -> i i n || _ ;
+define IllSg5 y "+Sg" "+Ill" -> y y n || _ ;
+define IllSg6 e "+Sg" "+Ill" -> e e n || _ ;
+define IllSg7 ö "+Sg" "+Ill" -> ö ö n || _ ;
+define IllSg8 ä "+Sg" "+Ill" -> ä ä n || _ ;
+
+# Определение иллатива
+define Illative Illseen .o. Illsiin .o. IllH1 .o. IllH2 .o. IllH3 .o. IllH4 .o. IllH5 .o. IllH6 .o. IllH7 .o. IllH8 .o. IllSg1 .o. IllSg2 .o. IllSg3 .o. IllSg4 .o. IllSg5 .o. IllSg6 .o. IllSg7 .o. IllSg8 .o. IllPl1 .o. IllPl2 ;
+
+define OtherCases PartTa .o. PartA .o. LocativeCases .o. Illative;
+
+# Показатель ед. числа уже не нужен, заменяем его на крышечку
+# Перед показателем мн. числа конечные ä и i опускаются
+# В двусложных основах конечное a меняется на o, если первая гласная основы a, e или i, и опускается, если первая гласная основы - u или o
+# Во мн. числе первая гласная из двух опускается, если после идет согласная
+# Показатель мн. числа уже не нужен, заменяем его на границу + i
+define Sg "+Sg" -> "^" || _ ;
+define OmitA ä -> 0, i -> 0 || _ "+Pl";
+define Ai2Oi a -> o || [ a | e | i ] Vowel* Consonant+ _ "+Pl";
+define Ai2i a -> 0 || [ o | u ] Vowel* Consonant+ _ "+Pl";
+define OmitFirst Vowel -> 0 || _ Vowel "+Pl" Consonant;
+define Pl "+Pl" -> "^" i || _ ;
+
+define NumberInfl Sg .o. OmitA .o. Ai2i .o. Ai2Oi .o. OmitFirst .o. Pl ;
+
+# i заменяется на j между двумя гласными
+# После основы заднего ряда A меняется на a, а после основы переднего ряда - на ä
+define JotPl i -> j || Vowel "^"* _ "^"* Vowel ;
+define HarmonyBack A -> a || BackStem "^" Letter* _;
+define HarmonyFront A -> ä || FrontStem "^" Letter* _;
+
+define Phonetics JotPl .o. HarmonyBack .o. HarmonyFront ;
+
+# Удвоенные согласные сокращаются при последнем закрытом слоге после любой буквы
+# p меняется на v при последнем закрытом слоге после гласных
+# t превращается в d, а k опускается при последнем закрытом слоге после любой буквы
+# В той же позиции происходят чередования mp/mm, nt/nn, nk/ng, lt/ll, rt/rr
+# В той же позиции, не считая гласной (т. к. она входит в чередование), происходят чередования lke/lje, rke/rje, hke/hje, uku/uvu
+# Перед гласным основы происходит чередование in/im, tön/ttöm
+# E опускается  после гласного основы, а во всех других позициях становится нейтральным гласным
+define DoublePTK p p -> p , t t -> t , k k -> k || Letter _ "^"* Vowel "^"* Consonant [ .#. | Consonant ] ;
+define SingleP p -> v || Vowel _ "^"* Vowel "^"* Consonant [ .#. | Consonant ] ;
+define SingleTK t -> d , k -> 0 || Letter _ "^"* Vowel "^"* Consonant [ .#. | Consonant ] ; 
+define TwoLetter m p -> m m , n t -> n n , n k -> n g , l t -> l l , r t -> r r || Letter _ "^"* Vowel "^"* Consonant [ .#. | Consonant ] ;
+define ThreeLetter l k e -> l j e , r k e -> r j e , h k e -> h j e , u k u -> u v u || Letter _ "^"* Consonant [ .#. | Consonant ] ;
+define N2M i n -> i m , t ö n -> t t ö m || _ "^" Vowel;
+define EOmit E -> 0 || Vowel "^" _;
+define EReal E -> e || _;
+
+define Alternations N2M .o. EOmit .o. EReal .o. ThreeLetter .o. TwoLetter .o. SingleP .o. SingleTK .o. DoublePTK ;
+
+# Определение всех возможных аффиксов
+define Affixes Nominatives .o. Genetive .o. OtherCases .o. NumberInfl .o. Alternations .o. Phonetics;
+
+# Очистка от границ морфем
+define Cleanup "^" -> 0 || _ ;
+
+# Определение модели грамматики как входное слово (конструкция) + все преобразования + чистка
+define Grammar Input .o. Affixes .o. Cleanup ;
+push Grammar
